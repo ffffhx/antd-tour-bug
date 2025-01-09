@@ -3,132 +3,119 @@ import { Tour, Button } from 'antd';
 import { useRef, useState, useEffect } from 'react';
 
 function App() {
-  const newGuideButtonRef = useRef(null);  // 直接使用ref
+  const stepGroupsButtonRef = useRef(null);
 
   const [steps, setSteps] = useState([]);
-  const guidesDirection = [
-    { title: "策略研究", description: " 如果想了解研究策略模块相关的使用，可以点击这里" },
-    { title: "数据资源", description: "如果想了解数据资源模块相关的使用，可以点击这里" },
-    { title: "用户管理", description: "如果想了解用户管理模块相关的使用，可以点击这里" },
+  const stepGroupsDirection = [
+    { title: "stepGroup1", description: " this is stepGroup1" },
+    { title: "stepGroup2", description: "this is stepGroup2" },
+    { title: "stepGroup3", description: "this is stepGroup3" },
   ];
-
-
-  // 策略研究的各个步骤
-  const strategySteps = [
+  // steps1
+  const stepGroup1 = [
     {
-      title: "开始研究",
-      description: "首先来到开始研究",
-      target: () => document.querySelector(".start-search"),
+      title: "step1",
+      description: "this is step1",
+      target: () => document.querySelector(".step1"),
     },
     {
-      title: "个人空间",
-      description: "在开始研究下，找到个人空间",
-      target: () => document.querySelector(".personal-space"),
+      title: "step2",
+      description: "this is step2",
+      target: () => document.querySelector(".step2"),
     },
     {
-      title: "策略研究",
-      description: "点击【策略研究】，我们在这里新建一个项目",
-      target: () => document.querySelector(".strategy-research"),
+      title: "step3",
+      description: "this is step3",
+      target: () => document.querySelector(".step3"),
     },
     {
-      title: "新建项目",
-      description: "点击【策略研究】，我们在这里新建一个项目",
-      target: () => document.querySelector(".new-found"),
+      title: "step4",
+      description: "this is step4",
+      target: () => document.querySelector(".step4"),
     },
     {
-      title: "项目模型",
-      description: "请输入项目名称、项目描述、选择项目模型",
-      target: () => document.querySelector(".strategy-modal"),
+      title: "step5",
+      description: "this is step5",
+      target: () => document.querySelector(".step5"),
     },
     {
-      title: "点击确认创建项目",
-      description: "点击【策略研究】，我们在这里新建一个项目",
-      target: () => document.querySelector(".strategy-identify-btn"),
+      title: "step6",
+      description: "this is step6",
+      target: () => document.querySelector(".step6"),
     },
     {
-      title: "项目列表",
-      description: "我们可以在这里查看项目列表",
-      target: () => document.querySelector(".strategy-project-list"),
+      title: "step7",
+      description: "this is step7",
+      target: () => document.querySelector(".step7"),
     }
   ]
-  // 用户管理的各个步骤
-  const userManageSteps = [
+  // steps2
+  const stepGroup2 = [
     {
-      title: "管理中心",
-      description: "Put your files here.",
-      target: () => document.querySelector(".manage-center"),
+      title: "step1",
+      description: "this is step1",
+      target: () => document.querySelector(".step1"),
     },
     {
-      title: "用户管理",
-      description: "Put your files here.",
-      target: () => document.querySelector(".user-manage"),
+      title: "step2",
+      description: "this is step2",
+      target: () => document.querySelector(".step2"),
     },
     {
-      title: "添加",
-      description: "点击【+添加】我们可以新建一个用户",
-      target: () => document.querySelector(".add-user"),
+      title: "step3",
+      description: "this is step3",
+      target: () => document.querySelector(".step3"),
     },
     {
-      title: "添加用户",
-      description: "在这里，我们可以添加用户，请在此输入用户的各种信息",
-      target: () => document.querySelector(".user-add-project-model"),
+      title: "step4",
+      description: "this is step4",
+      target: () => document.querySelector(".step4"),
     },
     {
-      title: "项目",
-      description: "在这里可以执行一些用户相关的操作，比如删除用户等",
-      target: () => document.querySelector(".user-operation"),
+      title: "step5",
+      description: "this is step5",
+      target: () => document.querySelector(".step5"),
     },
-
+    {
+      title: "step6",
+      description: "this is step6",
+      target: () => document.querySelector(".step6"),
+    },
+    {
+      title: "step7",
+      description: "this is step7",
+      target: () => document.querySelector(".step7"),
+    }
   ]
-  // 数据资源的各个步骤
-  const dataSourcesSteps = [
+  // steps3
+  const stepGroup3 = [
     {
-      title: "开始研究",
-      description: "Put your files here.",
-      target: () => document.querySelector(".start-search"),
+      title: "step1",
+      description: "this is step1",
+      target: () => document.querySelector(".step1"),
     },
     {
-      title: "数据资源",
-      description: "在【数据资源】中，我们可以找到我们所有的行情数据、基本面数据等一系列基础数据资源。",
-      target: () => document.querySelector(".data-sources"),
+      title: "step2",
+      description: "this is step2",
+      target: () => document.querySelector(".step2"),
     },
     {
-      title: "数据库对象资源",
-      description: "Put your files here.",
-      target: () => document.querySelector(".database-object"),
-    },
-    {
-      title: "公共资源",
-      description: "通过【公共资源】，我们可以找到我们需要的数据，这里我们先找到股票日K数据。",
-      target: () => document.querySelector(".pulic-sources"),
-    },
-    {
-      title: "meta_data",
-      description: "Put your files here.",
-      target: () => document.querySelector(".database-object"),
-    },
-    {
-      title: "stock_bar_1day",
-      description: "Put your files here.",
-      target: () => document.querySelector(".meta_data + div"),
-    },
-    {
-      title: "表详情",
-      description: "这样我们就查阅该行情数据表相关，字段、数据样例、数据说明、建表语句等详细信息了。",
-      target: () => document.querySelector(".list-detail"),
-    },
+      title: "step3",
+      description: "this is step3",
+      target: () => document.querySelector(".step3"),
+    }
   ]
 
-  const [ifGuideDataSources, onGuideDataSources] = useState(true);
-  const [ifGuideStrategyResearch, onGuideStrategyResearch] = useState(true);
-  const [ifGuideUserManage, onGuideUserManage] = useState(true);
+  const [ifDoneStepGroup1, setIfDoneStepGroup1] = useState(true);
+  const [ifDoneStepGroup2, setIfDoneStepGroup2] = useState(true);
+  const [ifDoneStepGroup3, setIfDoneStepGroup3] = useState(true);
 
   useEffect(() => {
     setSteps(
-      !ifGuideDataSources ? dataSourcesSteps :
-        !ifGuideUserManage ? userManageSteps : strategySteps
+      !ifDoneStepGroup1 ? stepGroup3 :
+        !ifDoneStepGroup3 ? stepGroup2 : stepGroup1
     );
-  }, [ifGuideDataSources, ifGuideUserManage, ifGuideStrategyResearch]);
+  }, [ifDoneStepGroup1, ifDoneStepGroup2, ifDoneStepGroup3]);
 
   const guideButtonRefs = useRef([]); // 用来存储每个按钮的ref
   const [isVisiable, setIsVisiable] = useState(false);
@@ -136,20 +123,20 @@ function App() {
   return (
     <div className="App">
       <Tour
-        open={!ifGuideDataSources || !ifGuideStrategyResearch || !ifGuideUserManage}
+        open={!ifDoneStepGroup1 || !ifDoneStepGroup2 || !ifDoneStepGroup3}
         onClose={() => {
-          onGuideStrategyResearch(true);
-          onGuideUserManage(true);
-          onGuideDataSources(true)
+          setIfDoneStepGroup1(true)
+          setIfDoneStepGroup2(true);
+          setIfDoneStepGroup3(true);
         }}
         onFinish={() => {
-          onGuideDataSources(true);
-          onGuideStrategyResearch(true);
-          onGuideUserManage(true);
+          setIfDoneStepGroup1(true);
+          setIfDoneStepGroup2(true);
+          setIfDoneStepGroup3(true);
         }}
         steps={
           // steps
-          !ifGuideDataSources ? dataSourcesSteps : !ifGuideUserManage ? userManageSteps : strategySteps
+          !ifDoneStepGroup1 ? stepGroup1 : !ifDoneStepGroup2 ? stepGroup2 : stepGroup3
         }
         indicatorsRender={(current, total) => (
           <span>
@@ -162,12 +149,12 @@ function App() {
         <div className="avatar-box-new-guide-box-button">
           <Button type="primary" size="middle" shape="circle"
             onClick={() => setIsVisiable(!isVisiable)}
-            ref={newGuideButtonRef}
+            ref={stepGroupsButtonRef}
           />
         </div>
         {isVisiable && (
           <div className="avatar-box-new-guide-box-content">
-            {guidesDirection.map((item, index) => {
+            {stepGroupsDirection.map((item, index) => {
               return (
                 <div
                   ref={(el) => {
@@ -183,11 +170,11 @@ function App() {
                     shape="circle"
                     onClick={() => {
                       if (index === 0) {
-                        onGuideStrategyResearch(false);
+                        setIfDoneStepGroup1(false);
                       } else if (index === 1) {
-                        onGuideDataSources(false);
+                        setIfDoneStepGroup2(false);
                       } else {
-                        onGuideUserManage(false);
+                        setIfDoneStepGroup3(false);
                       }
                     }}
                   />
