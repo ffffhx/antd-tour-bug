@@ -105,9 +105,7 @@ function App() {
     {
       title: "meta_data",
       description: "Put your files here.",
-      target: () => {
-        return (document.getElementsByClassName("meta_data"));
-      },
+      target: () => document.querySelector(".database-object"),
     },
     {
       title: "stock_bar_1day",
@@ -151,8 +149,7 @@ function App() {
         }}
         steps={
           // steps
-          !ifGuideDataSources ? dataSourcesSteps :
-            !ifGuideUserManage ? userManageSteps : strategySteps
+          !ifGuideDataSources ? dataSourcesSteps : !ifGuideUserManage ? userManageSteps : strategySteps
         }
         indicatorsRender={(current, total) => (
           <span>
