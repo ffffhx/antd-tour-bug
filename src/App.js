@@ -135,8 +135,8 @@ function App() {
           setIfDoneStepGroup3(true);
         }}
         steps={
-          steps
-          // !ifDoneStepGroup1 ? stepGroup1 : !ifDoneStepGroup2 ? stepGroup2 : stepGroup3
+          // steps
+          !ifDoneStepGroup1 ? stepGroup1 : !ifDoneStepGroup2 ? stepGroup2 : stepGroup3
         }
         indicatorsRender={(current, total) => (
           <span>
