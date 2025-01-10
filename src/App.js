@@ -112,8 +112,8 @@ function App() {
 
   useEffect(() => {
     setSteps(
-      !ifDoneStepGroup1 ? stepGroup3 :
-        !ifDoneStepGroup3 ? stepGroup2 : stepGroup1
+      !ifDoneStepGroup1 ? stepGroup1 :
+        !ifDoneStepGroup2 ? stepGroup2 : stepGroup3
     );
   }, [ifDoneStepGroup1, ifDoneStepGroup2, ifDoneStepGroup3]);
 
@@ -135,8 +135,8 @@ function App() {
           setIfDoneStepGroup3(true);
         }}
         steps={
-          // steps
-          !ifDoneStepGroup1 ? stepGroup1 : !ifDoneStepGroup2 ? stepGroup2 : stepGroup3
+          steps
+          // !ifDoneStepGroup1 ? stepGroup1 : !ifDoneStepGroup2 ? stepGroup2 : stepGroup3
         }
         indicatorsRender={(current, total) => (
           <span>
