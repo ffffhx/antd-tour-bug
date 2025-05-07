@@ -12,43 +12,43 @@ function App() {
     { title: "stepGroup3", description: "this is stepGroup3" },
   ];
   // steps1
-  const stepGroup1 = [
-    {
-      title: "step1",
-      description: "this is step1",
-      target: () => document.querySelector(".step1"),
-    },
-    {
-      title: "step2",
-      description: "this is step2",
-      target: () => document.querySelector(".step2"),
-    },
-    {
-      title: "step3",
-      description: "this is step3",
-      target: () => document.querySelector(".step3"),
-    },
-    {
-      title: "step4",
-      description: "this is step4",
-      target: () => document.querySelector(".step4"),
-    },
-    {
-      title: "step5",
-      description: "this is step5",
-      target: () => document.querySelector(".step5"),
-    },
-    {
-      title: "step6",
-      description: "this is step6",
-      target: () => document.querySelector(".step6"),
-    },
-    {
-      title: "step7",
-      description: "this is step7",
-      target: () => document.querySelector(".step7"),
-    }
-  ]
+  // const stepGroup1 = [
+  //   {
+  //     title: "step1",
+  //     description: "this is step1",
+  //     target: () => document.querySelector(".step1"),
+  //   },
+  //   {
+  //     title: "step2",
+  //     description: "this is step2",
+  //     target: () => document.querySelector(".step2"),
+  //   },
+  //   {
+  //     title: "step3",
+  //     description: "this is step3",
+  //     target: () => document.querySelector(".step3"),
+  //   },
+  //   {
+  //     title: "step4",
+  //     description: "this is step4",
+  //     target: () => document.querySelector(".step4"),
+  //   },
+  //   {
+  //     title: "step5",
+  //     description: "this is step5",
+  //     target: () => document.querySelector(".step5"),
+  //   },
+  //   {
+  //     title: "step6",
+  //     description: "this is step6",
+  //     target: () => document.querySelector(".step6"),
+  //   },
+  //   {
+  //     title: "step7",
+  //     description: "this is step7",
+  //     target: () => document.querySelector(".step7"),
+  //   }
+  // ]
   // steps2
   const stepGroup2 = [
     {
@@ -67,25 +67,26 @@ function App() {
       target: () => document.querySelector(".step3"),
     },
     {
-      title: "step4",
-      description: "this is step4",
-      target: () => document.querySelector(".step4"),
+      title: "step1",
+      description: "this is step1",
+      target: () => document.querySelector(".step1"),
     },
     {
-      title: "step5",
-      description: "this is step5",
-      target: () => document.querySelector(".step5"),
+      title: "step2",
+      description: "this is step2",
+      target: () => document.querySelector(".step2"),
     },
     {
-      title: "step6",
-      description: "this is step6",
-      target: () => document.querySelector(".step6"),
+      title: "step3",
+      description: "this is step3",
+      target: () => document.querySelector(".step3"),
     },
     {
-      title: "step7",
-      description: "this is step7",
-      target: () => document.querySelector(".step7"),
-    }
+      title: "step3",
+      description: "this is step3",
+      target: () => document.querySelector(".step3"),
+    },
+
   ]
   // steps3
   const stepGroup3 = [
@@ -110,6 +111,12 @@ function App() {
   const [ifDoneStepGroup2, setIfDoneStepGroup2] = useState(true);
   const [ifDoneStepGroup3, setIfDoneStepGroup3] = useState(true);
 
+  const handleClose = () => {
+    setIfDoneStepGroup1(true)
+    setIfDoneStepGroup2(true);
+    setIfDoneStepGroup3(true);
+  }
+
   useEffect(() => {
     setSteps(
       !ifDoneStepGroup1 ? stepGroup1 :
@@ -124,19 +131,11 @@ function App() {
     <div className="App">
       <Tour
         open={!ifDoneStepGroup1 || !ifDoneStepGroup2 || !ifDoneStepGroup3}
-        onClose={() => {
-          setIfDoneStepGroup1(true)
-          setIfDoneStepGroup2(true);
-          setIfDoneStepGroup3(true);
-        }}
-        onFinish={() => {
-          setIfDoneStepGroup1(true);
-          setIfDoneStepGroup2(true);
-          setIfDoneStepGroup3(true);
-        }}
+        onClose={handleClose}
+        onFinish={handleClose}
         steps={
-          // steps
-          !ifDoneStepGroup1 ? stepGroup1 : !ifDoneStepGroup2 ? stepGroup2 : stepGroup3
+          steps
+          // !ifDoneStepGroup1 ? stepGroup1 : !ifDoneStepGroup2 ? stepGroup2 : stepGroup3
         }
         indicatorsRender={(current, total) => (
           <span>
